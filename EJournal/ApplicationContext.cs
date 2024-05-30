@@ -40,7 +40,14 @@ namespace EJournal
             modelBuilder.Entity<Sub_Prep>().HasOne(pr => pr.RatingSheet).WithOne(gr => gr.SubPrep).HasForeignKey<RatingSheet>(u => u.IDSubPrep);
             modelBuilder.Entity<Subjects>().HasOne(pr => pr.SubPrep).WithOne(gr => gr.Sub).HasForeignKey<Sub_Prep>(u => u.IDSub);
             modelBuilder.Entity<Prepods>().HasOne(pr => pr.SubPrep).WithOne(gr => gr.Prep).HasForeignKey<Sub_Prep>(u => u.IDPrep);
+            modelBuilder.Entity<Sub_Prep>().HasIndex(u => u.IDSub).IsUnique(false);
+            modelBuilder.Entity<Sub_Prep>().HasIndex(u => u.IDPrep).IsUnique(false);
+            modelBuilder.Entity<Prepods>().HasIndex(u => u.GroupID).IsUnique(false);
+            modelBuilder.Entity<Students>().HasIndex(u => u.GroupID).IsUnique(false);
+            modelBuilder.Entity<RatingSheet>().HasIndex(u => u.IDStud).IsUnique(false);
+            modelBuilder.Entity<RatingSheet>().HasIndex(u => u.IDSubPrep).IsUnique(false);
             base.OnModelCreating(modelBuilder);
         }
+        
     }
 }

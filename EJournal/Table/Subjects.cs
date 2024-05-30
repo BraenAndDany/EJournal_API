@@ -1,4 +1,5 @@
-﻿namespace EJournal.Table
+﻿using Newtonsoft.Json;
+namespace EJournal.Table
 {
     public class Subjects
     {
